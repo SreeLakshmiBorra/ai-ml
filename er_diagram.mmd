@@ -1,0 +1,40 @@
+erDiagram
+    USERS ||--o{ WEATHER_DATA : submits
+    WEATHER_DATA ||--|| PREDICTION_RESULT : generates
+    ML_MODEL ||--o{ PREDICTION_RESULT : produces
+
+    USERS {
+        int user_id PK
+        string user_name
+        string email
+        string password
+        string role
+    }
+
+    WEATHER_DATA {
+        int data_id PK
+        int user_id FK
+        float annual_rainfall
+        float cloud_visibility
+        float seasonal_rainfall
+        float temperature
+        float humidity
+        string created_at
+    }
+
+    ML_MODEL {
+        int model_id PK
+        string model_name
+        string algorithm_type
+        float accuracy
+        string model_file
+    }
+
+    PREDICTION_RESULT {
+        int prediction_id PK
+        int data_id FK
+        int model_id FK
+        string flood_result
+        float flood_probability
+        string prediction_date
+    }
